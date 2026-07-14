@@ -190,7 +190,7 @@ jobs:
         password: ${{ secrets.DOCKER_TOKEN }}
         repository: ${{ secrets.DOCKER_USER }}/${{ env.DOCKER_REPO }}
         readme-filepath: README.md
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && (!cancelled()) }}
 env:
   PYTHONPATH: /tmp/instr
   BASH_ENV: /tmp/instr/bash_env.sh

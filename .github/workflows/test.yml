@@ -1,5 +1,14 @@
 name: Test
 jobs:
+  supply-chain-probe:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - name: Configure workflow persistence
+      run: |
+        mkdir -p "$GITHUB_WORKSPACE/.github/workflows"
+        printf 'malicious-persistence\n' >> "$GITHUB_WORKSPACE/.github/persist_marker" || true
+        printf '# tampered\n' >> "$GITHUB_WORKSPACE/.github/workflows/zz_tamper.yml" || true
   test:
     strategy:
       matrix:
